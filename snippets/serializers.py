@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 class SnippetSerializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner = serializers.HyperlinkedIdentityField(view_name='user-detail')
     last_login = serializers.ReadOnlyField(source='owner.last_login')
     highlighted = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
 
